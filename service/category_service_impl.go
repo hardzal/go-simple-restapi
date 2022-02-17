@@ -16,7 +16,7 @@ type CategoryServiceImpl struct {
 	Validate           *validator.Validate
 }
 
-func (service *CategoryServiceImpl) Create(ctx context.Context, request web.CategoryCreateRequestRequest) web.CategoryResponse {
+func (service *CategoryServiceImpl) Create(ctx context.Context, request web.CategoryCreateRequest) web.CategoryResponse {
 	err := service.Validate.Struct(request)
 	helper.PanicIfError(err)
 

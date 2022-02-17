@@ -1,5 +1,5 @@
 package web
 
-type CategoryCreateRequestRequest struct {
+type CategoryCreateRequest struct {
 	Name string `validate:"required,min=3,max=150"`
 }
