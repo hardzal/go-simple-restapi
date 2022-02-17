@@ -43,9 +43,10 @@ func (repository *CategoryRepositoryImpl) Delete(ctx context.Context, tx *sql.Tx
 }
 
 func (repository *CategoryRepositoryImpl) FindById(ctx context.Context, tx *sql.Tx, categoryId int) (domain.Category, error) {
-	SQL := "SELECT id, name FROM categories FROM id = ?"
+	SQL := "SELECT id, name FROM categories WHERE id = ?"
 	rows, err := tx.QueryContext(ctx, SQL, categoryId)
 	helper.PanicIfError(err)
+	defer rows.Close()
 
 	category := domain.Category{}
 	if rows.Next() {
@@ -61,6 +62,7 @@ func (repository *CategoryRepositoryImpl) FindAll(ctx context.Context, tx *sql.T
 	SQL := "SELECT id, name FROM categories"
 	rows, err := tx.QueryContext(ctx, SQL)
 	helper.PanicIfError(err)
+	defer rows.Close()
 
 	var categories []domain.Category
 	for rows.Next() {
