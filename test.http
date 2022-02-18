@@ -8,7 +8,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "name": "Nodejs"
+  "name": ""
 }
 
 ### Get category by id
